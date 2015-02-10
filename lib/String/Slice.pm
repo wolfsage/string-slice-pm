@@ -57,8 +57,7 @@ int slice (SV* dummy, ...) {
     // New offset is out of bounds
     if (slice_ptr < string_ptr || slice_ptr >= string_end) {
       // Reset the slice
-      SvPV_set(slice, 0);
-      SvCUR_set(slice, 0);
+      sv_setsv(slice, &PL_sv_undef);
 
       // Failure
       return 0;
